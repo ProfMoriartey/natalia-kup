@@ -53,8 +53,11 @@ type WordleRowProps = {
 type LetterStatus = "empty" | "correct" | "present" | "absent";
 
 function WordleRow({ guess, solution, isFinal }: WordleRowProps) {
-  const splitGuess = guess.split("").concat(Array(5 - guess.length).fill(""));
-  const statuses: LetterStatus[] = Array(5).fill("empty");
+  const splitGuess = guess
+    .split("")
+    .concat(Array.from({ length: 5 - guess.length }, () => ""));
+
+  const statuses: LetterStatus[] = Array.from({ length: 5 }, () => "empty");
 
   if (isFinal) {
     const solutionChars: (string | null)[] = solution.split("");
