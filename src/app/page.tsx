@@ -2,6 +2,7 @@ import BirthdayMessage from "~/components/birthday-message";
 import CountdownTimer from "~/components/countdown-timer";
 import BucketList from "~/components/bucket-list";
 import GameLink from "~/components/game-link";
+import VisitedMap from "~/components/visited-map";
 
 export default function LandingPage() {
   return (
@@ -10,7 +11,7 @@ export default function LandingPage() {
         <BirthdayMessage />
         <BucketList />
         <CountdownTimer />
-        <GameLink />
+        <VisitedMap />
       </div>
     </main>
   );
