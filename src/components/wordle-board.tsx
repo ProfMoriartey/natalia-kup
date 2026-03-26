@@ -12,6 +12,13 @@ type WordleBoardProps = {
   };
 };
 
+type SavedGameState = {
+  guesses: string[];
+  isGameOver: boolean;
+  isWin: boolean;
+  date: string;
+};
+
 export default function WordleBoard({ solutionData }: WordleBoardProps) {
   const solution = solutionData.word.toUpperCase();
   const [guesses, setGuesses] = useState<string[]>([]);
@@ -54,17 +61,22 @@ export default function WordleBoard({ solutionData }: WordleBoardProps) {
   useEffect(() => {
     const savedState = localStorage.getItem("swiftle-state");
     if (savedState) {
-      const parsedState = JSON.parse(savedState);
-      const today = new Date().toDateString();
+      try {
+        const parsedState = JSON.parse(savedState) as SavedGameState;
+        const today = new Date().toDateString();
 
-      if (parsedState.date === today) {
-        setGuesses(parsedState.guesses);
-        setIsGameOver(parsedState.isGameOver);
-        setIsWin(parsedState.isWin);
-        if (parsedState.isGameOver) {
-          setTimeout(() => setIsDialogOpen(true), 500);
+        if (parsedState.date === today) {
+          setGuesses(parsedState.guesses);
+          setIsGameOver(parsedState.isGameOver);
+          setIsWin(parsedState.isWin);
+          if (parsedState.isGameOver) {
+            setTimeout(() => setIsDialogOpen(true), 500);
+          }
+        } else {
+          localStorage.removeItem("swiftle-state");
         }
-      } else {
+      } catch (error) {
+        console.error("Failed to parse saved game state");
         localStorage.removeItem("swiftle-state");
       }
     }
@@ -74,7 +86,7 @@ export default function WordleBoard({ solutionData }: WordleBoardProps) {
   useEffect(() => {
     if (!isLoaded) return;
 
-    const stateToSave = {
+    const stateToSave: SavedGameState = {
       guesses,
       isGameOver,
       isWin,
