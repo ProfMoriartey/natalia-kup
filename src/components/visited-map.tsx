@@ -23,6 +23,10 @@ const visitedCountries: string[] = [
   "Malaysia",
   "Philippines",
   "Kazakhstan",
+  "Armenia",
+  "Russia",
+  "Uzbekistan",
+  "Thailand",
 ];
 
 type GeoProperties = {
@@ -38,6 +42,13 @@ export default function VisitedMap() {
   const [position, setPosition] = useState({
     coordinates: [0, 0] as [number, number],
     zoom: 1,
+  });
+
+  const [tooltip, setTooltip] = useState({
+    content: "",
+    x: 0,
+    y: 0,
+    visible: false,
   });
 
   const handleZoomIn = () => {
@@ -60,7 +71,7 @@ export default function VisitedMap() {
   return (
     <div className="flex h-full flex-col rounded-xl border border-pink-200 bg-pink-100 p-6 shadow-sm">
       <h2 className="mb-4 text-xl font-bold text-pink-900 uppercase md:text-2xl">
-        Been to
+        Travel Map
       </h2>
       <div className="relative flex w-full flex-1 items-center justify-center overflow-hidden rounded border border-pink-300 bg-pink-50 p-2">
         <ComposableMap
@@ -92,6 +103,24 @@ export default function VisitedMap() {
                         hover: { fill: "rgb(225, 29, 72)", outline: "none" },
                         pressed: { outline: "none" },
                       }}
+                      onMouseEnter={(e) => {
+                        setTooltip({
+                          content: countryName,
+                          x: e.clientX,
+                          y: e.clientY,
+                          visible: true,
+                        });
+                      }}
+                      onMouseMove={(e) => {
+                        setTooltip((prev) => ({
+                          ...prev,
+                          x: e.clientX,
+                          y: e.clientY,
+                        }));
+                      }}
+                      onMouseLeave={() => {
+                        setTooltip((prev) => ({ ...prev, visible: false }));
+                      }}
                     />
                   );
                 })
@@ -114,6 +143,18 @@ export default function VisitedMap() {
             -
           </button>
         </div>
+
+        {tooltip.visible && (
+          <div
+            className="pointer-events-none fixed z-50 rounded-md border border-pink-200 bg-white px-3 py-2 text-sm font-bold text-pink-900 shadow-md"
+            style={{
+              left: tooltip.x + 15,
+              top: tooltip.y + 15,
+            }}
+          >
+            {tooltip.content}
+          </div>
+        )}
       </div>
     </div>
   );
