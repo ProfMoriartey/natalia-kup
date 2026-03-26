@@ -74,7 +74,7 @@ export default function CountdownTimer() {
     <div className="flex h-full flex-col justify-center rounded-xl border border-pink-200 bg-pink-100 p-6 shadow-sm">
       <div>
         <h2 className="mb-4 text-xl font-bold tracking-widest text-pink-900 uppercase md:text-2xl">
-          Countdown to 30
+          Countdown to the big three O
         </h2>
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
           {Object.entries(timeLeft).map(([unit, value]) => (
@@ -90,11 +90,16 @@ export default function CountdownTimer() {
           ))}
         </div>
       </div>
-      <Link href="/wordle" className="mt-6 w-full">
-        <Button className="w-full bg-rose-500 py-6 text-lg font-bold tracking-widest text-white uppercase hover:bg-rose-600">
-          Play Swiftle
-        </Button>
-      </Link>
+      <div className="mt-4">
+        <h2 className="mb-4 text-xl font-bold tracking-widest text-pink-900 uppercase md:text-2xl">
+          Wanna check your swiftie knowledge
+        </h2>
+        <Link href="/wordle" className="mt-6 w-full">
+          <Button className="w-full bg-rose-500 py-6 text-lg font-bold tracking-widest text-white uppercase hover:bg-rose-600">
+            Play Swiftle
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }
