@@ -139,7 +139,7 @@ export default function WordleBoard({ solutionData }: WordleBoardProps) {
         setIsOpen={setIsDialogOpen}
         isWin={isWin}
         solutionData={solutionData}
-        guessCount={guesses.length}
+        guesses={guesses}
       />
     </div>
   );
