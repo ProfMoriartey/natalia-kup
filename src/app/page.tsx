@@ -6,7 +6,7 @@ import GameLink from "~/components/game-link";
 export default function LandingPage() {
   return (
     <main className="h-dvh w-full bg-pink-50 p-4 md:p-8">
-      <div className="grid h-full w-full grid-cols-1 grid-rows-4 gap-4 md:grid-cols-2 md:grid-rows-2 md:gap-8">
+      <div className="grid w-full grid-cols-1 grid-rows-4 gap-4 md:h-full md:grid-cols-2 md:grid-rows-2 md:gap-8">
         <BirthdayMessage />
         <BucketList />
         <CountdownTimer />
