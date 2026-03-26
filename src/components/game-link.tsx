@@ -9,7 +9,7 @@ export default function GameLink() {
       </div>
       <Link href="/wordle" className="w-full">
         <Button className="w-full bg-rose-500 py-8 text-lg font-bold tracking-widest text-white uppercase hover:bg-rose-600 md:text-xl">
-          Play Birthday Swiftle
+          Play Swiftle
         </Button>
       </Link>
     </div>
