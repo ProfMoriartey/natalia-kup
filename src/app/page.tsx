@@ -1,12 +1,17 @@
-import { getDailyWord } from "~/server/actions/wordle";
-import WordleBoard from "~/components/wordle-board";
+import BirthdayMessage from "~/components/birthday-message";
+import CountdownTimer from "~/components/countdown-timer";
+import BucketList from "~/components/bucket-list";
+import GameLink from "~/components/game-link";
 
-export default async function HomePage() {
-  const dailyData = await getDailyWord();
-
+export default function LandingPage() {
   return (
-    <main className="min-h-dvh bg-pink-50 selection:bg-pink-200">
-      <WordleBoard solutionData={dailyData} />
+    <main className="h-dvh w-full bg-pink-50 p-4 md:p-8">
+      <div className="grid h-full w-full grid-cols-1 grid-rows-4 gap-4 md:grid-cols-2 md:grid-rows-2 md:gap-8">
+        <BirthdayMessage />
+        <BucketList />
+        <CountdownTimer />
+        <GameLink />
+      </div>
     </main>
   );
 }
