@@ -41,9 +41,9 @@ export default function WordleKeyboard({
 
             let keyClass = "bg-pink-100 text-pink-900 hover:bg-pink-200";
             if (status === "correct")
-              keyClass = "bg-rose-500 text-white hover:bg-rose-600";
+              keyClass = "bg-pink-500 text-white hover:bg-pink-600";
             if (status === "present")
-              keyClass = "bg-pink-300 text-white hover:bg-pink-400";
+              keyClass = "bg-green-300 text-white hover:bg-green-400";
             if (status === "absent")
               keyClass = "bg-slate-400 text-white hover:bg-slate-500";
 

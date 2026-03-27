@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import WordleGrid from "~/components/wordle-grid";
 import WordleKeyboard from "~/components/wordle-keyboard";
 import GameOverDialog from "~/components/game-over-dialog";
+import InstructionsDialog from "~/components/instructions-dialog";
+import Link from "next/link";
 
 type WordleBoardProps = {
   solutionData: {
@@ -25,12 +27,13 @@ export default function WordleBoard({ solutionData }: WordleBoardProps) {
   const [currentGuess, setCurrentGuess] = useState("");
   const [isGameOver, setIsGameOver] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isInstructionsOpen, setIsInstructionsOpen] = useState(false);
   const [isWin, setIsWin] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const onKeyPress = useCallback(
     (key: string) => {
-      if (isGameOver) return;
+      if (isGameOver || isInstructionsOpen) return;
 
       if (key === "ENTER") {
         if (currentGuess.length === 5) {
@@ -55,11 +58,20 @@ export default function WordleBoard({ solutionData }: WordleBoardProps) {
         setCurrentGuess((prev) => prev + key);
       }
     },
-    [currentGuess, isGameOver, guesses, solution],
+    [currentGuess, isGameOver, guesses, solution, isInstructionsOpen],
   );
 
   useEffect(() => {
     const savedState = localStorage.getItem("swiftle-state");
+    const hasSeenInstructions = localStorage.getItem(
+      "swiftle-instructions-seen",
+    );
+
+    if (!hasSeenInstructions) {
+      setIsInstructionsOpen(true);
+      localStorage.setItem("swiftle-instructions-seen", "true");
+    }
+
     if (savedState) {
       try {
         const parsedState = JSON.parse(savedState) as SavedGameState;
@@ -115,9 +127,23 @@ export default function WordleBoard({ solutionData }: WordleBoardProps) {
   return (
     <div className="flex min-h-dvh flex-col items-center justify-between bg-pink-50 pt-4 pb-8">
       <div className="flex w-full max-w-sm flex-col items-center px-4">
-        <h1 className="mb-6 text-3xl font-bold tracking-widest text-pink-900 uppercase">
-          Swiftle
-        </h1>
+        <div className="mb-6 flex w-full items-center justify-between">
+          <Link
+            href="/"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-pink-200 font-bold text-pink-900 hover:bg-pink-300"
+          >
+            ←
+          </Link>
+          <h1 className="text-3xl font-bold tracking-widest text-pink-900 uppercase">
+            Swiftle
+          </h1>
+          <button
+            onClick={() => setIsInstructionsOpen(true)}
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-pink-200 font-bold text-pink-900 hover:bg-pink-300"
+          >
+            ?
+          </button>
+        </div>
 
         <WordleGrid
           guesses={guesses}
@@ -140,6 +166,11 @@ export default function WordleBoard({ solutionData }: WordleBoardProps) {
         isWin={isWin}
         solutionData={solutionData}
         guesses={guesses}
+      />
+
+      <InstructionsDialog
+        isOpen={isInstructionsOpen}
+        setIsOpen={setIsInstructionsOpen}
       />
     </div>
   );

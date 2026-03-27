@@ -89,9 +89,9 @@ function WordleRow({ guess, solution, isFinal }: WordleRowProps) {
 
         if (isFinal) {
           if (statuses[i] === "correct")
-            bgColor = "bg-rose-500 border-rose-500 text-white";
+            bgColor = "bg-pink-500 border-pink-500 text-white";
           if (statuses[i] === "present")
-            bgColor = "bg-pink-300 border-pink-300 text-white";
+            bgColor = "bg-green-300 border-green-300 text-white";
           if (statuses[i] === "absent")
             bgColor = "bg-slate-400 border-slate-400 text-white";
         } else if (char) {
