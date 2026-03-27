@@ -12,7 +12,7 @@ const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 const visitedCountries: string[] = [
   "United States of America",
-  "Germany",
+  "Estonia",
   "France",
   "Spain",
   "Turkey",
@@ -21,12 +21,21 @@ const visitedCountries: string[] = [
   "Georgia",
   "Vietnam",
   "Malaysia",
-  "Philippines",
+  "Sweden",
   "Kazakhstan",
   "Armenia",
   "Russia",
   "Uzbekistan",
   "Thailand",
+  "Finland",
+  "Indonesia",
+  "Hungary",
+  "Croatia",
+  "Austria",
+  "Czechia",
+  "Azerbaijan",
+  "Belarus",
+  "United Arab Emirates",
 ];
 
 type GeoProperties = {
@@ -71,7 +80,7 @@ export default function VisitedMap() {
   return (
     <div className="flex h-full flex-col rounded-xl border border-pink-200 bg-pink-100 p-6 shadow-sm">
       <h2 className="mb-4 text-xl font-bold text-pink-900 uppercase md:text-2xl">
-        Travel Map
+        Been to
       </h2>
       <div className="relative flex w-full flex-1 items-center justify-center overflow-hidden rounded border border-pink-300 bg-pink-50 p-2">
         <ComposableMap

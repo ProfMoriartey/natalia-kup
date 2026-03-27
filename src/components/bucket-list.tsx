@@ -9,8 +9,8 @@ type BucketListItem = {
 };
 
 const DEFAULT_LIST: BucketListItem[] = [
-  { id: 1, text: "Attend an Eras Tour concert", done: false },
-  { id: 2, text: "Visit the US", done: false },
+  { id: 1, text: "See Taylor Swift live", done: false },
+  { id: 2, text: "Visit the new world", done: false },
   { id: 3, text: "Be friends with a genius", done: true },
   { id: 4, text: "Read Morning Glory Milking Farm", done: false },
   { id: 5, text: "Get married", done: false },
