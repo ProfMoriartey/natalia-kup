@@ -102,7 +102,7 @@ export default function InstructionsDialog({
                 <div className="flex h-10 w-10 items-center justify-center border-2 border-pink-400 text-xl font-bold text-pink-900 uppercase">
                   I
                 </div>
-                <div className="flex h-10 w-10 items-center justify-center border-2 border-slate-400 bg-slate-400 text-xl font-bold text-white uppercase">
+                <div className="flex h-10 w-10 items-center justify-center border-2 border-rose-500 bg-rose-500 text-xl font-bold text-white uppercase">
                   C
                 </div>
               </div>

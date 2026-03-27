@@ -45,7 +45,7 @@ export default function WordleKeyboard({
             if (status === "present")
               keyClass = "bg-green-300 text-white hover:bg-green-400";
             if (status === "absent")
-              keyClass = "bg-slate-400 text-white hover:bg-slate-500";
+              keyClass = "bg-rose-500 text-white hover:bg-rose-500";
 
             return (
               <Button
